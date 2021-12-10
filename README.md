@@ -4,6 +4,8 @@
 2. Perform data cleansing on consolidated CSV files
 3. Run classification learning model to generate predicted outputs.
 
+NOTE: Create a seperate conda environment or venv to install dependencies of source projects used to avoid conflicting dependencies among projects. Each project has it's own directory structure and requirements file for dependencies. Please ensure all of these requirements are met and the directory structure matches either pytest/unittest directory structure and naming convention.
+
 Detailed Implementation:
 
 Create a seperate conda environment or venv to install dependencies of source projects used to avoid conflicting dependencies among projects.
