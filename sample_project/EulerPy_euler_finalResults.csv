@@ -1,0 +1,78 @@
+Mutant Number,Line Number,Statement,Hits,Number of tests,Number of Asserts,Operator,Type of Statement,Complexity,LOC,DepthofNestedLoops,Total Duration,Label
+1,20,"click.confirm('View answer to problem %i?' % num, abort=True)",8,4,5,AOR,expression,1,275,3,40.57556, survived
+2,31,msg = 'Generate file for problem %i?' % num,30,15,37,AOR,expression,3,275,3,40.57556, survived
+3,41,previous_file = Problem(num - 1).file,18,9,24,AOR,expression,3,275,3,40.57556, survived
+4,45,header = 'Project Euler Problem %i' % num,22,11,29,AOR,expression,3,275,3,40.57556, survived
+5,46,divider = '=' * len(header),22,11,29,AOR,expression,3,275,3,40.57556, survived
+6,46,divider = '=' * len(header),22,11,29,AOR,expression,3,275,3,40.57556, survived
+7,46,divider = '=' * len(header),22,11,29,AOR,expression,3,275,3,40.57556, survived
+8,51,f.write(content + '\n\n\n'),22,11,29,AOR,expression,3,275,3,40.57556, survived
+9,65,"click.secho('Project Euler Problem %i' % num, bold=True)",6,3,6,AOR,expression,1,275,3,40.57556, survived
+10,72,click.echo('Current problem is problem %i.' % num),6,3,9,AOR,expression,1,275,3,40.57556, survived
+11,73,"generate(num + 1, prompt_default=False)",6,3,9,AOR,expression,1,275,3,40.57556, survived
+12,89,"click.secho('No file found for problem %i.' % p.num, fg='red')",2,1,1,AOR,expression,7,275,3,40.57556, survived
+13,194,click.echo('-' * 63),2,1,5,AOR,expression,11,275,3,40.57556, survived
+14,194,click.echo('-' * 63),2,1,5,AOR,expression,11,275,3,40.57556, survived
+15,194,click.echo('-' * 63),2,1,5,AOR,expression,11,275,3,40.57556, survived
+16,195,click.echo(legend + '\n'),2,1,5,AOR,expression,11,275,3,40.57556, survived
+17,198,num_of_rows = (num + 19) // 20,2,1,5,AOR,expression,11,275,3,40.57556, survived
+18,198,num_of_rows = (num + 19) // 20,2,1,5,AOR,expression,11,275,3,40.57556, survived
+19,198,num_of_rows = (num + 19) // 20,2,1,5,AOR,expression,11,275,3,40.57556, survived
+20,200,"for row in range(1, num_of_rows + 1):",4,1,5,AOR,loop,11,275,3,40.57556, survived
+21,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+22,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+23,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+24,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+25,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+26,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+27,201,"(low, high) = ((row * 20) - 19, row * 20)",2,1,5,AOR,expression,11,275,3,40.57556, survived
+28,204,"for problem in range(low, high + 1):",42,1,5,AOR,loop,11,275,3,40.57556, survived
+29,209,spacer = '   ' if problem % 5 == 0 else ' ',40,1,5,AOR,expression,11,275,3,40.57556, survived
+30,212,"click.secho(status + spacer, nl=problem % 20 == 0)",40,1,5,AOR,expression,11,275,3,40.57556, survived
+31,212,"click.secho(status + spacer, nl=problem % 20 == 0)",40,1,5,AOR,expression,11,275,3,40.57556, survived
+32,227,"flag = '--%s' % name.replace('_', '-')",6,0,0,AOR,expression,2,275,3,40.57556, incompetent
+33,228,"flags = [flag] if '_' in name else [flag, '-%s' % name[0]]",6,0,0,AOR,expression,2,275,3,40.57556, incompetent
+34,260,problem += 1,2,1,2,ASR,expression,7,275,3,40.57556, survived
+35,266,problem += 1,4,2,5,ASR,expression,7,275,3,40.57556, survived
+36,84,if not (os.path.isfile(filename)):,36,15,32,COD,condition,7,275,3,40.57556, survived
+37,136,return sys.exit(1) if (exit and not is_correct) else is_correct,30,13,29,COD,return,7,275,3,40.57556, survived
+38,162,if not files:,4,2,6,COD,condition,11,275,3,40.57556, survived
+39,178,elif not is_correct:,2,1,5,COD,condition,11,275,3,40.57556, survived
+40,250,"if option not in {cheat, preview, verify_all}:",18,9,15,COD,condition,7,275,3,40.57556, survived
+41,35,if p.glob:,24,12,31,COI,condition,3,275,3,40.57556, survived
+42,56,if p.resources:,22,11,29,COI,condition,3,275,3,40.57556, survived
+43,84,if not (os.path.isfile(filename)):,36,15,32,COI,condition,7,275,3,40.57556, survived
+44,86,if p.glob:,10,5,10,COI,condition,7,275,3,40.57556, survived
+45,103,if proc.poll() != 0:,34,14,31,COI,condition,7,275,3,40.57556, survived
+46,111,"if isinstance(stdout, bytes):",30,13,29,COI,condition,7,275,3,40.57556, survived
+47,120,if len(output_lines) > 1:,30,13,29,COI,condition,7,275,3,40.57556, survived
+48,132,if is_correct:,30,13,29,COI,condition,7,275,3,40.57556, survived
+49,162,if not files:,4,2,6,COI,condition,11,275,3,40.57556, survived
+50,174,if is_correct is None:,8,1,5,COI,condition,11,275,3,40.57556, survived
+51,176,elif is_correct:,6,1,5,COI,condition,11,275,3,40.57556, survived
+52,178,elif not is_correct:,2,1,5,COI,condition,11,275,3,40.57556, survived
+53,185,if file.num != num:,2,1,5,COI,condition,11,275,3,40.57556, survived
+54,206,status = overview[problem] if problem in overview else '.',40,1,5,COI,expression,11,275,3,40.57556, survived
+55,228,"flags = [flag] if '_' in name else [flag, '-%s' % name[0]]",6,0,0,COI,expression,2,275,3,40.57556, survived
+56,242,"if (problem == 0 or option in {skip, verify_all}):",76,38,78,COI,condition,7,275,3,40.57556, survived
+57,242,"if (problem == 0 or option in {skip, verify_all}):",76,38,78,COI,condition,7,275,3,40.57556, survived
+58,248,if problem == 0:,38,19,41,COI,condition,7,275,3,40.57556, survived
+59,250,"if option not in {cheat, preview, verify_all}:",18,9,15,COI,condition,7,275,3,40.57556, survived
+60,259,elif option is preview:,20,10,26,COI,condition,7,275,3,40.57556, survived
+61,264,if option is None:,38,19,41,COI,condition,7,275,3,40.57556, survived
+62,270,elif option is None:,38,19,37,COI,condition,7,275,3,40.57556, survived
+64,172,overview[file.num] = status['skipped'],0,0,0,EHD,expression,11,275,3,40.57556, survived
+65,172,overview[file.num] = status['skipped'],0,0,0,EXS,expression,11,275,3,40.57556, survived
+66,82,filename = (filename or p.filename()),36,15,32,LCR,expression,7,275,3,40.57556, survived
+67,95,"cmd = ((sys.executable or 'python'), filename)",34,14,31,LCR,expression,7,275,3,40.57556, survived
+68,136,return sys.exit(1) if (exit and not is_correct) else is_correct,30,13,29,LCR,return,7,275,3,40.57556, survived
+69,242,"if (problem == 0 or option in {skip, verify_all}):",76,38,78,LCR,condition,7,275,3,40.57556, survived
+70,103,if proc.poll() != 0:,34,14,31,ROR,condition,7,275,3,40.57556, survived
+71,120,if len(output_lines) > 1:,30,13,29,ROR,condition,7,275,3,40.57556, survived
+72,120,if len(output_lines) > 1:,30,13,29,ROR,condition,7,275,3,40.57556, survived
+73,125,is_correct = output_lines[0] == solution,28,12,28,ROR,expression,7,275,3,40.57556, survived
+74,185,if file.num != num:,2,1,5,ROR,condition,11,275,3,40.57556, survived
+75,209,spacer = '   ' if problem % 5 == 0 else ' ',40,1,5,ROR,expression,11,275,3,40.57556, survived
+76,212,"click.secho(status + spacer, nl=problem % 20 == 0)",40,1,5,ROR,expression,11,275,3,40.57556, survived
+77,242,"if (problem == 0 or option in {skip, verify_all}):",76,38,78,ROR,condition,7,275,3,40.57556, survived
+78,248,if problem == 0:,38,19,41,ROR,condition,7,275,3,40.57556, survived
