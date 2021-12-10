@@ -1,0 +1,32 @@
+1	AOD - arithmetic operator deletion
+2	AOR - arithmetic operator replacement
+3	ASR - assignment operator replacement
+4	BCR - break continue replacement
+5	COD - conditional operator deletion
+6	COI - conditional operator insertion
+7	CRP - constant replacement
+8	DDL - decorator deletion
+9	EHD - exception handler deletion
+10	EXS - exception swallowing
+11	IHD - hiding variable deletion
+12	IOD - overriding method deletion
+13	IOP - overridden method calling position change
+14	LCR - logical connector replacement
+15	LOD - logical operator deletion
+16	LOR - logical operator replacement
+17	ROR - relational operator replacement
+18	SCD - super calling deletion
+19	SCI - super calling insert
+20	SIR - slice index remove
+21	AugAssign
+22	BinOp
+23	BinOp Bitwise Comparison
+24	BinOp Bitwise Shift
+25	BoolOp
+26	Compare
+27	Compare In
+28	Compare Is
+29	If
+30	Index
+31	NameConstant
+32	Slice
