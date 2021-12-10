@@ -1,0 +1,1106 @@
+[*] Start mutation process:
+   - targets: EulerPy/euler.py
+   - tests: tests/test_euler.py
+[*] 40 tests passed:
+   - test_euler [0.43722 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR euler: 
+--------------------------------------------------------------------------------
+   16: def cheat(num):
+   17:     '''View the answer to a problem.'''
+   18:     
+   19:     solution = click.style(Problem(num).solution, bold=True)
+-  20:     click.confirm('View answer to problem %i?' % num, abort=True)
++  20:     click.confirm('View answer to problem %i?' * num, abort=True)
+   21:     click.echo('The answer to problem {} is {}.'.format(num, solution))
+   22: 
+   23: 
+   24: 
+--------------------------------------------------------------------------------
+[0.42292 s] survived
+   - [#   2] AOR euler: 
+--------------------------------------------------------------------------------
+   27:     p = Problem(num)
+   28:     
+   29:     problem_text = p.text
+   30:     
+-  31:     msg = 'Generate file for problem %i?' % num
++  31:     msg = 'Generate file for problem %i?' * num
+   32:     click.confirm(msg, default=prompt_default, abort=True)
+   33:     
+   34:     
+   35:     if p.glob:
+--------------------------------------------------------------------------------
+[0.44322 s] survived
+   - [#   3] AOR euler: 
+--------------------------------------------------------------------------------
+   37:         msg = '"{}" already exists. Overwrite?'.format(filename)
+   38:         click.confirm(click.style(msg, fg='red'), abort=True)
+   39:     else:
+   40:         
+-  41:         previous_file = Problem(num - 1).file
++  41:         previous_file = Problem(num + 1).file
+   42:         prefix = previous_file.prefix if previous_file else ''
+   43:         filename = p.filename(prefix=prefix)
+   44:     
+   45:     header = 'Project Euler Problem %i' % num
+--------------------------------------------------------------------------------
+[0.42728 s] survived
+   - [#   4] AOR euler: 
+--------------------------------------------------------------------------------
+   41:         previous_file = Problem(num - 1).file
+   42:         prefix = previous_file.prefix if previous_file else ''
+   43:         filename = p.filename(prefix=prefix)
+   44:     
+-  45:     header = 'Project Euler Problem %i' % num
++  45:     header = 'Project Euler Problem %i' * num
+   46:     divider = '=' * len(header)
+   47:     text = '\n'.join([header, divider, '', problem_text])
+   48:     content = '\n'.join(['"""', text, '"""'])
+   49:     
+--------------------------------------------------------------------------------
+[0.43097 s] survived
+   - [#   5] AOR euler: 
+--------------------------------------------------------------------------------
+   42:         prefix = previous_file.prefix if previous_file else ''
+   43:         filename = p.filename(prefix=prefix)
+   44:     
+   45:     header = 'Project Euler Problem %i' % num
+-  46:     divider = '=' * len(header)
++  46:     divider = '=' / len(header)
+   47:     text = '\n'.join([header, divider, '', problem_text])
+   48:     content = '\n'.join(['"""', text, '"""'])
+   49:     
+   50:     with open(filename, 'w') as f:
+--------------------------------------------------------------------------------
+[0.43142 s] survived
+   - [#   6] AOR euler: 
+--------------------------------------------------------------------------------
+   42:         prefix = previous_file.prefix if previous_file else ''
+   43:         filename = p.filename(prefix=prefix)
+   44:     
+   45:     header = 'Project Euler Problem %i' % num
+-  46:     divider = '=' * len(header)
++  46:     divider = '=' // len(header)
+   47:     text = '\n'.join([header, divider, '', problem_text])
+   48:     content = '\n'.join(['"""', text, '"""'])
+   49:     
+   50:     with open(filename, 'w') as f:
+--------------------------------------------------------------------------------
+[0.43321 s] survived
+   - [#   7] AOR euler: 
+--------------------------------------------------------------------------------
+   42:         prefix = previous_file.prefix if previous_file else ''
+   43:         filename = p.filename(prefix=prefix)
+   44:     
+   45:     header = 'Project Euler Problem %i' % num
+-  46:     divider = '=' * len(header)
++  46:     divider = '=' ** len(header)
+   47:     text = '\n'.join([header, divider, '', problem_text])
+   48:     content = '\n'.join(['"""', text, '"""'])
+   49:     
+   50:     with open(filename, 'w') as f:
+--------------------------------------------------------------------------------
+[0.43775 s] survived
+   - [#   8] AOR euler: 
+--------------------------------------------------------------------------------
+   47:     text = '\n'.join([header, divider, '', problem_text])
+   48:     content = '\n'.join(['"""', text, '"""'])
+   49:     
+   50:     with open(filename, 'w') as f:
+-  51:         f.write(content + '\n\n\n')
++  51:         f.write(content - '\n\n\n')
+   52:     
+   53:     click.secho('Successfully created "{}".'.format(filename), fg='green')
+   54:     
+   55:     
+--------------------------------------------------------------------------------
+[0.41929 s] survived
+   - [#   9] AOR euler: 
+--------------------------------------------------------------------------------
+   61: def preview(num):
+   62:     '''Prints the text of a problem.'''
+   63:     
+   64:     problem_text = Problem(num).text
+-  65:     click.secho('Project Euler Problem %i' % num, bold=True)
++  65:     click.secho('Project Euler Problem %i' * num, bold=True)
+   66:     click.echo(problem_text)
+   67: 
+   68: 
+   69: 
+--------------------------------------------------------------------------------
+[0.42298 s] survived
+   - [#  10] AOR euler: 
+--------------------------------------------------------------------------------
+   68: 
+   69: 
+   70: def skip(num):
+   71:     '''Generates Python file for the next problem.'''
+-  72:     click.echo('Current problem is problem %i.' % num)
++  72:     click.echo('Current problem is problem %i.' * num)
+   73:     generate(num + 1, prompt_default=False)
+   74:     Problem(num).file.change_suffix('-skipped')
+   75: 
+   76: 
+--------------------------------------------------------------------------------
+[0.42062 s] survived
+   - [#  11] AOR euler: 
+--------------------------------------------------------------------------------
+   69: 
+   70: def skip(num):
+   71:     '''Generates Python file for the next problem.'''
+   72:     click.echo('Current problem is problem %i.' % num)
+-  73:     generate(num + 1, prompt_default=False)
++  73:     generate(num - 1, prompt_default=False)
+   74:     Problem(num).file.change_suffix('-skipped')
+   75: 
+   76: 
+   77: 
+--------------------------------------------------------------------------------
+[0.44160 s] survived
+   - [#  12] AOR euler: 
+--------------------------------------------------------------------------------
+   85:         
+   86:         if p.glob:
+   87:             filename = str(p.file)
+   88:         else:
+-  89:             click.secho('No file found for problem %i.' % p.num, fg='red')
++  89:             click.secho('No file found for problem %i.' * p.num, fg='red')
+   90:             sys.exit(1)
+   91:     
+   92:     solution = p.solution
+   93:     click.echo('Checking "{}" against solution: '.format(filename), nl=False)
+--------------------------------------------------------------------------------
+[0.49218 s] survived
+   - [#  13] AOR euler: 
+--------------------------------------------------------------------------------
+  190:     
+  191:     
+  192:     legend = ', '.join(('{} = {}'.format(v, k) for (k, v) in status.items()))
+  193:     
+- 194:     click.echo('-' * 63)
++ 194:     click.echo('-' / 63)
+  195:     click.echo(legend + '\n')
+  196:     
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+--------------------------------------------------------------------------------
+[0.47206 s] survived
+   - [#  14] AOR euler: 
+--------------------------------------------------------------------------------
+  190:     
+  191:     
+  192:     legend = ', '.join(('{} = {}'.format(v, k) for (k, v) in status.items()))
+  193:     
+- 194:     click.echo('-' * 63)
++ 194:     click.echo('-' // 63)
+  195:     click.echo(legend + '\n')
+  196:     
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+--------------------------------------------------------------------------------
+[0.41982 s] survived
+   - [#  15] AOR euler: 
+--------------------------------------------------------------------------------
+  190:     
+  191:     
+  192:     legend = ', '.join(('{} = {}'.format(v, k) for (k, v) in status.items()))
+  193:     
+- 194:     click.echo('-' * 63)
++ 194:     click.echo('-' ** 63)
+  195:     click.echo(legend + '\n')
+  196:     
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+--------------------------------------------------------------------------------
+[0.41827 s] survived
+   - [#  16] AOR euler: 
+--------------------------------------------------------------------------------
+  191:     
+  192:     legend = ', '.join(('{} = {}'.format(v, k) for (k, v) in status.items()))
+  193:     
+  194:     click.echo('-' * 63)
+- 195:     click.echo(legend + '\n')
++ 195:     click.echo(legend - '\n')
+  196:     
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+--------------------------------------------------------------------------------
+[0.42175 s] survived
+   - [#  17] AOR euler: 
+--------------------------------------------------------------------------------
+  194:     click.echo('-' * 63)
+  195:     click.echo(legend + '\n')
+  196:     
+  197:     
+- 198:     num_of_rows = (num + 19) // 20
++ 198:     num_of_rows = (num - 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+  201:         (low, high) = ((row * 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+--------------------------------------------------------------------------------
+[0.43479 s] survived
+   - [#  18] AOR euler: 
+--------------------------------------------------------------------------------
+  194:     click.echo('-' * 63)
+  195:     click.echo(legend + '\n')
+  196:     
+  197:     
+- 198:     num_of_rows = (num + 19) // 20
++ 198:     num_of_rows = (num + 19) / 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+  201:         (low, high) = ((row * 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+--------------------------------------------------------------------------------
+[0.42215 s] survived
+   - [#  19] AOR euler: 
+--------------------------------------------------------------------------------
+  194:     click.echo('-' * 63)
+  195:     click.echo(legend + '\n')
+  196:     
+  197:     
+- 198:     num_of_rows = (num + 19) // 20
++ 198:     num_of_rows = (num + 19) * 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+  201:         (low, high) = ((row * 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+--------------------------------------------------------------------------------
+[0.42317 s] survived
+   - [#  20] AOR euler: 
+--------------------------------------------------------------------------------
+  196:     
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+- 200:     for row in range(1, num_of_rows + 1):
++ 200:     for row in range(1, num_of_rows - 1):
+  201:         (low, high) = ((row * 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+--------------------------------------------------------------------------------
+[0.44033 s] survived
+   - [#  21] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row / 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.52521 s] survived
+   - [#  22] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row // 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.43221 s] survived
+   - [#  23] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row ** 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.43100 s] survived
+   - [#  24] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row * 20) + 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.41834 s] survived
+   - [#  25] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row * 20) - 19, row / 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.42117 s] survived
+   - [#  26] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row * 20) - 19, row // 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.41987 s] survived
+   - [#  27] AOR euler: 
+--------------------------------------------------------------------------------
+  197:     
+  198:     num_of_rows = (num + 19) // 20
+  199:     
+  200:     for row in range(1, num_of_rows + 1):
+- 201:         (low, high) = ((row * 20) - 19, row * 20)
++ 201:         (low, high) = ((row * 20) - 19, row ** 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+--------------------------------------------------------------------------------
+[0.42120 s] survived
+   - [#  28] AOR euler: 
+--------------------------------------------------------------------------------
+  200:     for row in range(1, num_of_rows + 1):
+  201:         (low, high) = ((row * 20) - 19, row * 20)
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+- 204:         for problem in range(low, high + 1):
++ 204:         for problem in range(low, high - 1):
+  205:             
+  206:             status = overview[problem] if problem in overview else '.'
+  207:             
+  208:             
+--------------------------------------------------------------------------------
+[0.53362 s] survived
+   - [#  29] AOR euler: 
+--------------------------------------------------------------------------------
+  205:             
+  206:             status = overview[problem] if problem in overview else '.'
+  207:             
+  208:             
+- 209:             spacer = '   ' if problem % 5 == 0 else ' '
++ 209:             spacer = '   ' if problem * 5 == 0 else ' '
+  210:             
+  211:             
+  212:             click.secho(status + spacer, nl=problem % 20 == 0)
+  213:     
+--------------------------------------------------------------------------------
+[0.44164 s] survived
+   - [#  30] AOR euler: 
+--------------------------------------------------------------------------------
+  208:             
+  209:             spacer = '   ' if problem % 5 == 0 else ' '
+  210:             
+  211:             
+- 212:             click.secho(status + spacer, nl=problem % 20 == 0)
++ 212:             click.secho(status - spacer, nl=problem % 20 == 0)
+  213:     
+  214:     click.echo()
+  215: 
+  216: 
+--------------------------------------------------------------------------------
+[0.42544 s] survived
+   - [#  31] AOR euler: 
+--------------------------------------------------------------------------------
+  208:             
+  209:             spacer = '   ' if problem % 5 == 0 else ' '
+  210:             
+  211:             
+- 212:             click.secho(status + spacer, nl=problem % 20 == 0)
++ 212:             click.secho(status + spacer, nl=problem * 20 == 0)
+  213:     
+  214:     click.echo()
+  215: 
+  216: 
+--------------------------------------------------------------------------------
+[0.42325 s] survived
+   - [#  32] AOR euler: 
+--------------------------------------------------------------------------------
+  223:         (name, docstring) = (option.__name__, option.__doc__)
+  224:         kwargs = {'flag_value': option, 'help': docstring}
+  225:         
+  226:         
+- 227:         flag = '--%s' % name.replace('_', '-')
++ 227:         flag = '--%s' * name.replace('_', '-')
+  228:         flags = [flag] if '_' in name else [flag, '-%s' % name[0]]
+  229:         
+  230:         fn = click.option('option', *flags, **kwargs)(fn)
+  231:     
+--------------------------------------------------------------------------------
+[0.00000 s] incompetent
+   - [#  33] AOR euler: 
+--------------------------------------------------------------------------------
+  224:         kwargs = {'flag_value': option, 'help': docstring}
+  225:         
+  226:         
+  227:         flag = '--%s' % name.replace('_', '-')
+- 228:         flags = [flag] if '_' in name else [flag, '-%s' % name[0]]
++ 228:         flags = [flag] if '_' in name else [flag, '-%s' * name[0]]
+  229:         
+  230:         fn = click.option('option', *flags, **kwargs)(fn)
+  231:     
+  232:     return fn
+--------------------------------------------------------------------------------
+[0.00000 s] incompetent
+   - [#  34] ASR euler: 
+--------------------------------------------------------------------------------
+  256:             problem = 1
+  257:         
+  258:         
+  259:         elif option is preview:
+- 260:             problem += 1
++ 260:             problem -= 1
+  261:         
+  262:         
+  263:         
+  264:         if option is None:
+--------------------------------------------------------------------------------
+[0.42259 s] survived
+   - [#  35] ASR euler: 
+--------------------------------------------------------------------------------
+  262:         
+  263:         
+  264:         if option is None:
+  265:             verify(problem)
+- 266:             problem += 1
++ 266:             problem -= 1
+  267:             option = generate
+  268:     
+  269:     
+  270:     elif option is None:
+--------------------------------------------------------------------------------
+[0.42345 s] survived
+   - [#  36] COD euler: 
+--------------------------------------------------------------------------------
+   80:     p = Problem(num)
+   81:     
+   82:     filename = (filename or p.filename())
+   83:     
+-  84:     if not (os.path.isfile(filename)):
++  84:     if os.path.isfile(filename):
+   85:         
+   86:         if p.glob:
+   87:             filename = str(p.file)
+   88:         else:
+--------------------------------------------------------------------------------
+[0.42272 s] survived
+   - [#  37] COD euler: 
+--------------------------------------------------------------------------------
+  132:     if is_correct:
+  133:         p.file.change_suffix('')
+  134:     
+  135:     
+- 136:     return sys.exit(1) if (exit and not is_correct) else is_correct
++ 136:     return sys.exit(1) if (exit and is_correct) else is_correct
+  137: 
+  138: 
+  139: 
+  140: def verify_all(num):
+--------------------------------------------------------------------------------
+[0.42429 s] survived
+   - [#  38] COD euler: 
+--------------------------------------------------------------------------------
+  158:     
+  159:     files = problem_glob()
+  160:     
+  161:     
+- 162:     if not files:
++ 162:     if files:
+  163:         click.echo('No Project Euler files found in the current directory.')
+  164:         sys.exit(1)
+  165:     
+  166:     for file in files:
+--------------------------------------------------------------------------------
+[0.44362 s] survived
+   - [#  39] COD euler: 
+--------------------------------------------------------------------------------
+  174:             if is_correct is None:
+  175:                 overview[file.num] = status['error']
+  176:             elif is_correct:
+  177:                 overview[file.num] = status['correct']
+- 178:             elif not is_correct:
++ 178:             elif is_correct:
+  179:                 overview[file.num] = status['incorrect']
+  180:                 
+  181:                 
+  182:                 
+--------------------------------------------------------------------------------
+[0.42888 s] survived
+   - [#  40] COD euler: 
+--------------------------------------------------------------------------------
+  246:         
+  247:         
+  248:         if problem == 0:
+  249:             
+- 250:             if option not in {cheat, preview, verify_all}:
++ 250:             if option in {cheat, preview, verify_all}:
+  251:                 msg = 'No Project Euler files found in the current directory.'
+  252:                 click.echo(msg)
+  253:                 option = generate
+  254:             
+--------------------------------------------------------------------------------
+[0.42040 s] survived
+   - [#  41] COI euler: 
+--------------------------------------------------------------------------------
+   31:     msg = 'Generate file for problem %i?' % num
+   32:     click.confirm(msg, default=prompt_default, abort=True)
+   33:     
+   34:     
+-  35:     if p.glob:
++  35:     if not (p.glob):
+   36:         filename = str(p.file)
+   37:         msg = '"{}" already exists. Overwrite?'.format(filename)
+   38:         click.confirm(click.style(msg, fg='red'), abort=True)
+   39:     else:
+--------------------------------------------------------------------------------
+[0.42581 s] survived
+   - [#  42] COI euler: 
+--------------------------------------------------------------------------------
+   52:     
+   53:     click.secho('Successfully created "{}".'.format(filename), fg='green')
+   54:     
+   55:     
+-  56:     if p.resources:
++  56:     if not (p.resources):
+   57:         p.copy_resources()
+   58: 
+   59: 
+   60: 
+--------------------------------------------------------------------------------
+[0.48475 s] survived
+   - [#  43] COI euler: 
+--------------------------------------------------------------------------------
+   80:     p = Problem(num)
+   81:     
+   82:     filename = (filename or p.filename())
+   83:     
+-  84:     if not (os.path.isfile(filename)):
++  84:     if not ((not (os.path.isfile(filename)))):
+   85:         
+   86:         if p.glob:
+   87:             filename = str(p.file)
+   88:         else:
+--------------------------------------------------------------------------------
+[0.43280 s] survived
+   - [#  44] COI euler: 
+--------------------------------------------------------------------------------
+   82:     filename = (filename or p.filename())
+   83:     
+   84:     if not (os.path.isfile(filename)):
+   85:         
+-  86:         if p.glob:
++  86:         if not (p.glob):
+   87:             filename = str(p.file)
+   88:         else:
+   89:             click.secho('No file found for problem %i.' % p.num, fg='red')
+   90:             sys.exit(1)
+--------------------------------------------------------------------------------
+[0.51180 s] survived
+   - [#  45] COI euler: 
+--------------------------------------------------------------------------------
+   99:     end = clock()
+  100:     time_info = format_time(start, end)
+  101:     
+  102:     
+- 103:     if proc.poll() != 0:
++ 103:     if not (proc.poll() != 0):
+  104:         click.secho('Error calling "{}".'.format(filename), fg='red')
+  105:         click.secho(time_info, fg='cyan')
+  106:         
+  107:         
+--------------------------------------------------------------------------------
+[0.42218 s] survived
+   - [#  46] COI euler: 
+--------------------------------------------------------------------------------
+  107:         
+  108:         return sys.exit(1) if exit else None
+  109:     
+  110:     
+- 111:     if isinstance(stdout, bytes):
++ 111:     if not (isinstance(stdout, bytes)):
+  112:         output = stdout.decode('ascii')
+  113:     
+  114:     
+  115:     output_lines = output.splitlines() if output else ['[no output]']
+--------------------------------------------------------------------------------
+[0.42416 s] survived
+   - [#  47] COI euler: 
+--------------------------------------------------------------------------------
+  116:     
+  117:     
+  118:     
+  119:     
+- 120:     if len(output_lines) > 1:
++ 120:     if not (len(output_lines) > 1):
+  121:         is_correct = False
+  122:         click.echo()
+  123:         click.secho('\n'.join(output_lines), bold=True, fg='red')
+  124:     else:
+--------------------------------------------------------------------------------
+[0.45698 s] survived
+   - [#  48] COI euler: 
+--------------------------------------------------------------------------------
+  128:     
+  129:     click.secho(time_info, fg='cyan')
+  130:     
+  131:     
+- 132:     if is_correct:
++ 132:     if not is_correct:
+  133:         p.file.change_suffix('')
+  134:     
+  135:     
+  136:     return sys.exit(1) if (exit and not is_correct) else is_correct
+--------------------------------------------------------------------------------
+[0.43241 s] survived
+   - [#  49] COI euler: 
+--------------------------------------------------------------------------------
+  158:     
+  159:     files = problem_glob()
+  160:     
+  161:     
+- 162:     if not files:
++ 162:     if not ((not files)):
+  163:         click.echo('No Project Euler files found in the current directory.')
+  164:         sys.exit(1)
+  165:     
+  166:     for file in files:
+--------------------------------------------------------------------------------
+[0.44910 s] survived
+   - [#  50] COI euler: 
+--------------------------------------------------------------------------------
+  170:             is_correct = verify(file.num, filename=str(file), exit=False)
+  171:         except KeyboardInterrupt:
+  172:             overview[file.num] = status['skipped']
+  173:         else:
+- 174:             if is_correct is None:
++ 174:             if not (is_correct is None):
+  175:                 overview[file.num] = status['error']
+  176:             elif is_correct:
+  177:                 overview[file.num] = status['correct']
+  178:             elif not is_correct:
+--------------------------------------------------------------------------------
+[0.48659 s] survived
+   - [#  51] COI euler: 
+--------------------------------------------------------------------------------
+  172:             overview[file.num] = status['skipped']
+  173:         else:
+  174:             if is_correct is None:
+  175:                 overview[file.num] = status['error']
+- 176:             elif is_correct:
++ 176:             elif not is_correct:
+  177:                 overview[file.num] = status['correct']
+  178:             elif not is_correct:
+  179:                 overview[file.num] = status['incorrect']
+  180:                 
+--------------------------------------------------------------------------------
+[0.45729 s] survived
+   - [#  52] COI euler: 
+--------------------------------------------------------------------------------
+  174:             if is_correct is None:
+  175:                 overview[file.num] = status['error']
+  176:             elif is_correct:
+  177:                 overview[file.num] = status['correct']
+- 178:             elif not is_correct:
++ 178:             elif not ((not is_correct)):
+  179:                 overview[file.num] = status['incorrect']
+  180:                 
+  181:                 
+  182:                 
+--------------------------------------------------------------------------------
+[0.49468 s] survived
+   - [#  53] COI euler: 
+--------------------------------------------------------------------------------
+  181:                 
+  182:                 
+  183:                 
+  184:                 
+- 185:                 if file.num != num:
++ 185:                 if not (file.num != num):
+  186:                     file.change_suffix('-skipped')
+  187:         
+  188:         
+  189:         click.echo()
+--------------------------------------------------------------------------------
+[0.47526 s] survived
+   - [#  54] COI euler: 
+--------------------------------------------------------------------------------
+  202:         click.echo('Problems {:03d}-{:03d}: '.format(low, high), nl=False)
+  203:         
+  204:         for problem in range(low, high + 1):
+  205:             
+- 206:             status = overview[problem] if problem in overview else '.'
++ 206:             status = overview[problem] if problem not in overview else '.'
+  207:             
+  208:             
+  209:             spacer = '   ' if problem % 5 == 0 else ' '
+  210:             
+--------------------------------------------------------------------------------
+[0.42243 s] survived
+   - [#  55] COI euler: 
+--------------------------------------------------------------------------------
+  224:         kwargs = {'flag_value': option, 'help': docstring}
+  225:         
+  226:         
+  227:         flag = '--%s' % name.replace('_', '-')
+- 228:         flags = [flag] if '_' in name else [flag, '-%s' % name[0]]
++ 228:         flags = [flag] if '_' not in name else [flag, '-%s' % name[0]]
+  229:         
+  230:         fn = click.option('option', *flags, **kwargs)(fn)
+  231:     
+  232:     return fn
+--------------------------------------------------------------------------------
+[0.41732 s] survived
+   - [#  56] COI euler: 
+--------------------------------------------------------------------------------
+  238: 
+  239: @click.command(name='euler', options_metavar='[OPTION]')@click.argument('problem', default=0, type=click.IntRange(0, None))@euler_options@click.version_option(version=__version__, message='EulerPy %(version)s')
+  240: def main(option, problem):'''Python-based Project Euler command line tool.'''
+  241:     
+- 242:     if (problem == 0 or option in {skip, verify_all}):
++ 242:     if not ((problem == 0 or option in {skip, verify_all})):
+  243:         
+  244:         files = problem_glob()
+  245:         problem = max((file.num for file in files)) if files else 0
+  246:         
+--------------------------------------------------------------------------------
+[0.42594 s] survived
+   - [#  57] COI euler: 
+--------------------------------------------------------------------------------
+  238: 
+  239: @click.command(name='euler', options_metavar='[OPTION]')@click.argument('problem', default=0, type=click.IntRange(0, None))@euler_options@click.version_option(version=__version__, message='EulerPy %(version)s')
+  240: def main(option, problem):'''Python-based Project Euler command line tool.'''
+  241:     
+- 242:     if (problem == 0 or option in {skip, verify_all}):
++ 242:     if (problem == 0 or option not in {skip, verify_all}):
+  243:         
+  244:         files = problem_glob()
+  245:         problem = max((file.num for file in files)) if files else 0
+  246:         
+--------------------------------------------------------------------------------
+[0.42278 s] survived
+   - [#  58] COI euler: 
+--------------------------------------------------------------------------------
+  244:         files = problem_glob()
+  245:         problem = max((file.num for file in files)) if files else 0
+  246:         
+  247:         
+- 248:         if problem == 0:
++ 248:         if not (problem == 0):
+  249:             
+  250:             if option not in {cheat, preview, verify_all}:
+  251:                 msg = 'No Project Euler files found in the current directory.'
+  252:                 click.echo(msg)
+--------------------------------------------------------------------------------
+[0.42146 s] survived
+   - [#  59] COI euler: 
+--------------------------------------------------------------------------------
+  246:         
+  247:         
+  248:         if problem == 0:
+  249:             
+- 250:             if option not in {cheat, preview, verify_all}:
++ 250:             if not (option not in {cheat, preview, verify_all}):
+  251:                 msg = 'No Project Euler files found in the current directory.'
+  252:                 click.echo(msg)
+  253:                 option = generate
+  254:             
+--------------------------------------------------------------------------------
+[0.41862 s] survived
+   - [#  60] COI euler: 
+--------------------------------------------------------------------------------
+  255:             
+  256:             problem = 1
+  257:         
+  258:         
+- 259:         elif option is preview:
++ 259:         elif not (option is preview):
+  260:             problem += 1
+  261:         
+  262:         
+  263:         
+--------------------------------------------------------------------------------
+[0.54149 s] survived
+   - [#  61] COI euler: 
+--------------------------------------------------------------------------------
+  260:             problem += 1
+  261:         
+  262:         
+  263:         
+- 264:         if option is None:
++ 264:         if not (option is None):
+  265:             verify(problem)
+  266:             problem += 1
+  267:             option = generate
+  268:     
+--------------------------------------------------------------------------------
+[0.43761 s] survived
+   - [#  62] COI euler: 
+--------------------------------------------------------------------------------
+  266:             problem += 1
+  267:             option = generate
+  268:     
+  269:     
+- 270:     elif option is None:
++ 270:     elif not (option is None):
+  271:         option = verify if Problem(problem).glob else generate
+  272:     
+  273:     
+  274:     option(problem)
+--------------------------------------------------------------------------------
+[0.42303 s] survived
+   - [#  63] DDL euler: 
+--------------------------------------------------------------------------------
+  235: 
+  236: 
+  237: 
+  238: 
+- 239: @click.command(name='euler', options_metavar='[OPTION]')@click.argument('problem', default=0, type=click.IntRange(0, None))@euler_options@click.version_option(version=__version__, message='EulerPy %(version)s')
+- 240: def main(option, problem):'''Python-based Project Euler command line tool.'''
++ 239: def main(option, problem):
++ 240:     '''Python-based Project Euler command line tool.'''
+  241:     
+  242:     if (problem == 0 or option in {skip, verify_all}):
+  243:         
+  244:         files = problem_glob()
+--------------------------------------------------------------------------------
+[0.42277 s] survived
+   - [#  64] EHD euler: 
+--------------------------------------------------------------------------------
+  168:         
+  169:         try:
+  170:             is_correct = verify(file.num, filename=str(file), exit=False)
+  171:         except KeyboardInterrupt:
+- 172:             overview[file.num] = status['skipped']
++ 172:             raise
+  173:         else:
+  174:             if is_correct is None:
+  175:                 overview[file.num] = status['error']
+  176:             elif is_correct:
+--------------------------------------------------------------------------------
+[0.43804 s] survived
+   - [#  65] EXS euler: 
+--------------------------------------------------------------------------------
+  168:         
+  169:         try:
+  170:             is_correct = verify(file.num, filename=str(file), exit=False)
+  171:         except KeyboardInterrupt:
+- 172:             overview[file.num] = status['skipped']
++ 172:             pass
+  173:         else:
+  174:             if is_correct is None:
+  175:                 overview[file.num] = status['error']
+  176:             elif is_correct:
+--------------------------------------------------------------------------------
+[0.42004 s] survived
+   - [#  66] LCR euler: 
+--------------------------------------------------------------------------------
+   78: def verify(num, filename=None, exit=True):
+   79:     '''Verifies the solution to a problem.'''
+   80:     p = Problem(num)
+   81:     
+-  82:     filename = (filename or p.filename())
++  82:     filename = (filename and p.filename())
+   83:     
+   84:     if not (os.path.isfile(filename)):
+   85:         
+   86:         if p.glob:
+--------------------------------------------------------------------------------
+[0.42298 s] survived
+   - [#  67] LCR euler: 
+--------------------------------------------------------------------------------
+   91:     
+   92:     solution = p.solution
+   93:     click.echo('Checking "{}" against solution: '.format(filename), nl=False)
+   94:     
+-  95:     cmd = ((sys.executable or 'python'), filename)
++  95:     cmd = ((sys.executable and 'python'), filename)
+   96:     start = clock()
+   97:     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+   98:     stdout = proc.communicate()[0]
+   99:     end = clock()
+--------------------------------------------------------------------------------
+[0.44314 s] survived
+   - [#  68] LCR euler: 
+--------------------------------------------------------------------------------
+  132:     if is_correct:
+  133:         p.file.change_suffix('')
+  134:     
+  135:     
+- 136:     return sys.exit(1) if (exit and not is_correct) else is_correct
++ 136:     return sys.exit(1) if (exit or not is_correct) else is_correct
+  137: 
+  138: 
+  139: 
+  140: def verify_all(num):
+--------------------------------------------------------------------------------
+[0.44885 s] survived
+   - [#  69] LCR euler: 
+--------------------------------------------------------------------------------
+  238: 
+  239: @click.command(name='euler', options_metavar='[OPTION]')@click.argument('problem', default=0, type=click.IntRange(0, None))@euler_options@click.version_option(version=__version__, message='EulerPy %(version)s')
+  240: def main(option, problem):'''Python-based Project Euler command line tool.'''
+  241:     
+- 242:     if (problem == 0 or option in {skip, verify_all}):
++ 242:     if (problem == 0 and option in {skip, verify_all}):
+  243:         
+  244:         files = problem_glob()
+  245:         problem = max((file.num for file in files)) if files else 0
+  246:         
+--------------------------------------------------------------------------------
+[0.42851 s] survived
+   - [#  70] ROR euler: 
+--------------------------------------------------------------------------------
+   99:     end = clock()
+  100:     time_info = format_time(start, end)
+  101:     
+  102:     
+- 103:     if proc.poll() != 0:
++ 103:     if proc.poll() == 0:
+  104:         click.secho('Error calling "{}".'.format(filename), fg='red')
+  105:         click.secho(time_info, fg='cyan')
+  106:         
+  107:         
+--------------------------------------------------------------------------------
+[0.42850 s] survived
+   - [#  71] ROR euler: 
+--------------------------------------------------------------------------------
+  116:     
+  117:     
+  118:     
+  119:     
+- 120:     if len(output_lines) > 1:
++ 120:     if len(output_lines) < 1:
+  121:         is_correct = False
+  122:         click.echo()
+  123:         click.secho('\n'.join(output_lines), bold=True, fg='red')
+  124:     else:
+--------------------------------------------------------------------------------
+[0.42834 s] survived
+   - [#  72] ROR euler: 
+--------------------------------------------------------------------------------
+  116:     
+  117:     
+  118:     
+  119:     
+- 120:     if len(output_lines) > 1:
++ 120:     if len(output_lines) >= 1:
+  121:         is_correct = False
+  122:         click.echo()
+  123:         click.secho('\n'.join(output_lines), bold=True, fg='red')
+  124:     else:
+--------------------------------------------------------------------------------
+[0.42739 s] survived
+   - [#  73] ROR euler: 
+--------------------------------------------------------------------------------
+  121:         is_correct = False
+  122:         click.echo()
+  123:         click.secho('\n'.join(output_lines), bold=True, fg='red')
+  124:     else:
+- 125:         is_correct = output_lines[0] == solution
++ 125:         is_correct = output_lines[0] != solution
+  126:         fg_colour = 'green' if is_correct else 'red'
+  127:         click.secho(output_lines[0], bold=True, fg=fg_colour)
+  128:     
+  129:     click.secho(time_info, fg='cyan')
+--------------------------------------------------------------------------------
+[0.45980 s] survived
+   - [#  74] ROR euler: 
+--------------------------------------------------------------------------------
+  181:                 
+  182:                 
+  183:                 
+  184:                 
+- 185:                 if file.num != num:
++ 185:                 if file.num == num:
+  186:                     file.change_suffix('-skipped')
+  187:         
+  188:         
+  189:         click.echo()
+--------------------------------------------------------------------------------
+[0.59891 s] survived
+   - [#  75] ROR euler: 
+--------------------------------------------------------------------------------
+  205:             
+  206:             status = overview[problem] if problem in overview else '.'
+  207:             
+  208:             
+- 209:             spacer = '   ' if problem % 5 == 0 else ' '
++ 209:             spacer = '   ' if problem % 5 != 0 else ' '
+  210:             
+  211:             
+  212:             click.secho(status + spacer, nl=problem % 20 == 0)
+  213:     
+--------------------------------------------------------------------------------
+[0.42090 s] survived
+   - [#  76] ROR euler: 
+--------------------------------------------------------------------------------
+  208:             
+  209:             spacer = '   ' if problem % 5 == 0 else ' '
+  210:             
+  211:             
+- 212:             click.secho(status + spacer, nl=problem % 20 == 0)
++ 212:             click.secho(status + spacer, nl=problem % 20 != 0)
+  213:     
+  214:     click.echo()
+  215: 
+  216: 
+--------------------------------------------------------------------------------
+[0.42520 s] survived
+   - [#  77] ROR euler: 
+--------------------------------------------------------------------------------
+  238: 
+  239: @click.command(name='euler', options_metavar='[OPTION]')@click.argument('problem', default=0, type=click.IntRange(0, None))@euler_options@click.version_option(version=__version__, message='EulerPy %(version)s')
+  240: def main(option, problem):'''Python-based Project Euler command line tool.'''
+  241:     
+- 242:     if (problem == 0 or option in {skip, verify_all}):
++ 242:     if (problem != 0 or option in {skip, verify_all}):
+  243:         
+  244:         files = problem_glob()
+  245:         problem = max((file.num for file in files)) if files else 0
+  246:         
+--------------------------------------------------------------------------------
+[0.45037 s] survived
+   - [#  78] ROR euler: 
+--------------------------------------------------------------------------------
+  244:         files = problem_glob()
+  245:         problem = max((file.num for file in files)) if files else 0
+  246:         
+  247:         
+- 248:         if problem == 0:
++ 248:         if problem != 0:
+  249:             
+  250:             if option not in {cheat, preview, verify_all}:
+  251:                 msg = 'No Project Euler files found in the current directory.'
+  252:                 click.echo(msg)
+--------------------------------------------------------------------------------
+[0.42682 s] survived
+[*] Mutation score [40.57556 s]: 0.0%
+   - all: 78
+   - killed: 0 (0.0%)
+   - survived: 76 (97.4%)
+   - incompetent: 2 (2.6%)
+   - timeout: 0 (0.0%)

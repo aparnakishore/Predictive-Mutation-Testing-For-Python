@@ -1,0 +1,743 @@
+[*] Start mutation process:
+   - targets: EulerPy/utils.py
+   - tests: tests/test_utils.py
+[*] 5 tests passed:
+   - test_utils [0.29436 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOD utils: 
+--------------------------------------------------------------------------------
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+   79:         if timespan > 0.0:
+   80:             
+-  81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
++  81:             order = min(int(math.floor(math.log10(timespan)) // 3), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+   85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
+--------------------------------------------------------------------------------
+[0.28197 s] survived
+   - [#   2] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 / 60) * 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.28684 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   3] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 // 60) * 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.29073 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   4] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 ** 60) * 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.28908 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   5] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 * 60) / 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.28844 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   6] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 * 60) // 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.29141 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   7] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 * 60) ** 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.28878 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   8] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 * 60) * 60, 60 / 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.28811 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#   9] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 * 60) * 60, 60 // 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.28781 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  10] AOR utils: 
+--------------------------------------------------------------------------------
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+-  53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
++  53:             lengths = ((24 * 60) * 60, 60 ** 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+--------------------------------------------------------------------------------
+[0.29917 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  11] AOR utils: 
+--------------------------------------------------------------------------------
+   52:             suffixes = ('d', 'h', 'm', 's')
+   53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+-  56:                 value = int(time / length)
++  56:                 value = int(time // length)
+   57:                 
+   58:                 if value > 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+--------------------------------------------------------------------------------
+[0.28574 s] survived
+   - [#  12] AOR utils: 
+--------------------------------------------------------------------------------
+   52:             suffixes = ('d', 'h', 'm', 's')
+   53:             lengths = ((24 * 60) * 60, 60 * 60, 60, 1)
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+-  56:                 value = int(time / length)
++  56:                 value = int(time * length)
+   57:                 
+   58:                 if value > 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+--------------------------------------------------------------------------------
+[0.28843 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  13] AOR utils: 
+--------------------------------------------------------------------------------
+   56:                 value = int(time / length)
+   57:                 
+   58:                 if value > 0:
+   59:                     time %= length
+-  60:                     yield '%i%s' % (value, suffix)
++  60:                     yield '%i%s' * (value, suffix)
+   61:                 
+   62:                 if time < 1:
+   63:                     break
+   64:         
+--------------------------------------------------------------------------------
+[0.28938 s] incompetent
+   - [#  14] AOR utils: 
+--------------------------------------------------------------------------------
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+   79:         if timespan > 0.0:
+   80:             
+-  81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
++  81:             order = min(+(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+   85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
+--------------------------------------------------------------------------------
+[0.27691 s] survived
+   - [#  15] AOR utils: 
+--------------------------------------------------------------------------------
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+   79:         if timespan > 0.0:
+   80:             
+-  81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
++  81:             order = min(-(int(math.floor(math.log10(timespan)) / 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+   85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
+--------------------------------------------------------------------------------
+[0.27617 s] survived
+   - [#  16] AOR utils: 
+--------------------------------------------------------------------------------
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+   79:         if timespan > 0.0:
+   80:             
+-  81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
++  81:             order = min(-(int(math.floor(math.log10(timespan)) * 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+   85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
+--------------------------------------------------------------------------------
+[0.27646 s] survived
+   - [#  17] AOR utils: 
+--------------------------------------------------------------------------------
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+-  85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
++  85:         return '%.*g %s' * (precision, timespan * scale[order], units[order])
+   86: 
+   87: 
+   88: def format_time(start, end):
+   89:     '''Returns string with relevant time information formatted properly'''
+--------------------------------------------------------------------------------
+[0.27898 s] survived
+   - [#  18] AOR utils: 
+--------------------------------------------------------------------------------
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+-  85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
++  85:         return '%.*g %s' % (precision, timespan / scale[order], units[order])
+   86: 
+   87: 
+   88: def format_time(start, end):
+   89:     '''Returns string with relevant time information formatted properly'''
+--------------------------------------------------------------------------------
+[0.27537 s] survived
+   - [#  19] AOR utils: 
+--------------------------------------------------------------------------------
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+-  85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
++  85:         return '%.*g %s' % (precision, timespan // scale[order], units[order])
+   86: 
+   87: 
+   88: def format_time(start, end):
+   89:     '''Returns string with relevant time information formatted properly'''
+--------------------------------------------------------------------------------
+[0.27838 s] survived
+   - [#  20] AOR utils: 
+--------------------------------------------------------------------------------
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+   84:         
+-  85:         return '%.*g %s' % (precision, timespan * scale[order], units[order])
++  85:         return '%.*g %s' % (precision, timespan ** scale[order], units[order])
+   86: 
+   87: 
+   88: def format_time(start, end):
+   89:     '''Returns string with relevant time information formatted properly'''
+--------------------------------------------------------------------------------
+[0.27705 s] survived
+   - [#  21] AOR utils: 
+--------------------------------------------------------------------------------
+   87: 
+   88: def format_time(start, end):
+   89:     '''Returns string with relevant time information formatted properly'''
+   90:     try:
+-  91:         cpu_usr = end[0] - start[0]
++  91:         cpu_usr = end[0] + start[0]
+   92:         cpu_sys = end[1] - start[1]
+   93:     
+   94:     except TypeError:
+   95:         
+--------------------------------------------------------------------------------
+[0.27781 s] survived
+   - [#  22] AOR utils: 
+--------------------------------------------------------------------------------
+   88: def format_time(start, end):
+   89:     '''Returns string with relevant time information formatted properly'''
+   90:     try:
+   91:         cpu_usr = end[0] - start[0]
+-  92:         cpu_sys = end[1] - start[1]
++  92:         cpu_sys = end[1] + start[1]
+   93:     
+   94:     except TypeError:
+   95:         
+   96:         return 'Time elapsed: {}'.format(human_time(cpu_usr))
+--------------------------------------------------------------------------------
+[0.27771 s] survived
+   - [#  23] AOR utils: 
+--------------------------------------------------------------------------------
+   95:         
+   96:         return 'Time elapsed: {}'.format(human_time(cpu_usr))
+   97:     else:
+   98:         
+-  99:         times = (human_time(x) for x in (cpu_usr, cpu_sys, cpu_usr + cpu_sys))
++  99:         times = (human_time(x) for x in (cpu_usr, cpu_sys, cpu_usr - cpu_sys))
+  100:         return 'Time elapsed: user: {}, sys: {}, total: {}'.format(*times)
+--------------------------------------------------------------------------------
+[0.27556 s] survived
+   - [#  24] ASR utils: 
+--------------------------------------------------------------------------------
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+   58:                 if value > 0:
+-  59:                     time %= length
++  59:                     time *= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+   62:                 if time < 1:
+   63:                     break
+--------------------------------------------------------------------------------
+[0.28640 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  25] BCR utils: 
+--------------------------------------------------------------------------------
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+   62:                 if time < 1:
+-  63:                     break
++  63:                     continue
+   64:         
+   65:         return ' '.join(_format_long_time(timespan))
+   66:     else:
+   67:         
+--------------------------------------------------------------------------------
+[0.27780 s] survived
+   - [#  26] COI utils: 
+--------------------------------------------------------------------------------
+   26:         Under Windows, system CPU time can't be measured. Return
+   27:         time.process_time() as user time and None as system time.
+   28:         """
+   29:         
+-  30:         if sys.version_info < (3, 3, 0):
++  30:         if not (sys.version_info < (3, 3, 0)):
+   31:             return (time.clock(), None)
+   32:         
+   33:         return (time.process_time(), None)
+   34: else:
+--------------------------------------------------------------------------------
+[0.27611 s] survived
+   - [#  27] COI utils: 
+--------------------------------------------------------------------------------
+   44: 
+   45: def human_time(timespan, precision=3):
+   46:     '''Formats the timespan in a human readable format'''
+   47:     
+-  48:     if timespan >= 60.0:
++  48:     if not (timespan >= 60.0):
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+--------------------------------------------------------------------------------
+[0.30262 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  28] COI utils: 
+--------------------------------------------------------------------------------
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+-  58:                 if value > 0:
++  58:                 if not (value > 0):
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+   62:                 if time < 1:
+--------------------------------------------------------------------------------
+[0.28628 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  29] COI utils: 
+--------------------------------------------------------------------------------
+   58:                 if value > 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+-  62:                 if time < 1:
++  62:                 if not (time < 1):
+   63:                     break
+   64:         
+   65:         return ' '.join(_format_long_time(timespan))
+   66:     else:
+--------------------------------------------------------------------------------
+[0.29014 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  30] COI utils: 
+--------------------------------------------------------------------------------
+   67:         
+   68:         units = ['s', 'ms', 'us', 'ns']
+   69:         
+   70:         
+-  71:         if (hasattr(sys.stdout, 'encoding') and sys.stdout.encoding == 'UTF-8'):
++  71:         if not ((hasattr(sys.stdout, 'encoding') and sys.stdout.encoding == 'UTF-8')):
+   72:             try:
+   73:                 units[2] = b'\xc2\xb5s'.decode('utf-8')
+   74:             except UnicodeEncodeError:
+   75:                 pass
+--------------------------------------------------------------------------------
+[0.27576 s] survived
+   - [#  31] COI utils: 
+--------------------------------------------------------------------------------
+   75:                 pass
+   76:         
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+-  79:         if timespan > 0.0:
++  79:         if not (timespan > 0.0):
+   80:             
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+--------------------------------------------------------------------------------
+[0.27645 s] survived
+   - [#  32] EHD utils: 
+--------------------------------------------------------------------------------
+   18: try:
+   19:     import resource
+   20: 
+   21: except ImportError:
+-  22:     import time
+-  23:     
+-  24:     def clock():
+-  25:         """
+-  26:         Under Windows, system CPU time can't be measured. Return
+-  27:         time.process_time() as user time and None as system time.
+-  28:         """
+-  29:         
+-  30:         if sys.version_info < (3, 3, 0):
+-  31:             return (time.clock(), None)
+-  32:         
+-  33:         return (time.process_time(), None)
+-  34: else:
++  22:     raise
++  23: else:
++  24:     
++  25:     
++  26:     
++  27:     
++  28:     
++  29:     
++  30:     
++  31:     
++  32:     
++  33:     
++  34:     
+   35:     
+   36:     def clock():
+   37:         '''
+   38:         Returns a tuple (t_user, t_system) since the start of the process.
+--------------------------------------------------------------------------------
+[0.27600 s] survived
+   - [#  33] EHD utils: 
+--------------------------------------------------------------------------------
+   71:         if (hasattr(sys.stdout, 'encoding') and sys.stdout.encoding == 'UTF-8'):
+   72:             try:
+   73:                 units[2] = b'\xc2\xb5s'.decode('utf-8')
+   74:             except UnicodeEncodeError:
+-  75:                 pass
++  75:                 raise
+   76:         
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+   79:         if timespan > 0.0:
+--------------------------------------------------------------------------------
+[0.28123 s] survived
+   - [#  34] EHD utils: 
+--------------------------------------------------------------------------------
+   92:         cpu_sys = end[1] - start[1]
+   93:     
+   94:     except TypeError:
+   95:         
+-  96:         return 'Time elapsed: {}'.format(human_time(cpu_usr))
++  96:         raise
+   97:     else:
+   98:         
+   99:         times = (human_time(x) for x in (cpu_usr, cpu_sys, cpu_usr + cpu_sys))
+  100:         return 'Time elapsed: user: {}, sys: {}, total: {}'.format(*times)
+--------------------------------------------------------------------------------
+[0.27902 s] survived
+   - [#  35] EXS utils: 
+--------------------------------------------------------------------------------
+   18: try:
+   19:     import resource
+   20: 
+   21: except ImportError:
+-  22:     import time
+-  23:     
+-  24:     def clock():
+-  25:         """
+-  26:         Under Windows, system CPU time can't be measured. Return
+-  27:         time.process_time() as user time and None as system time.
+-  28:         """
+-  29:         
+-  30:         if sys.version_info < (3, 3, 0):
+-  31:             return (time.clock(), None)
+-  32:         
+-  33:         return (time.process_time(), None)
+-  34: else:
++  22:     pass
++  23: else:
++  24:     
++  25:     
++  26:     
++  27:     
++  28:     
++  29:     
++  30:     
++  31:     
++  32:     
++  33:     
++  34:     
+   35:     
+   36:     def clock():
+   37:         '''
+   38:         Returns a tuple (t_user, t_system) since the start of the process.
+--------------------------------------------------------------------------------
+[0.27374 s] survived
+   - [#  36] EXS utils: 
+--------------------------------------------------------------------------------
+   92:         cpu_sys = end[1] - start[1]
+   93:     
+   94:     except TypeError:
+   95:         
+-  96:         return 'Time elapsed: {}'.format(human_time(cpu_usr))
++  96:         pass
+   97:     else:
+   98:         
+   99:         times = (human_time(x) for x in (cpu_usr, cpu_sys, cpu_usr + cpu_sys))
+  100:         return 'Time elapsed: user: {}, sys: {}, total: {}'.format(*times)
+--------------------------------------------------------------------------------
+[0.28053 s] survived
+   - [#  37] LCR utils: 
+--------------------------------------------------------------------------------
+   67:         
+   68:         units = ['s', 'ms', 'us', 'ns']
+   69:         
+   70:         
+-  71:         if (hasattr(sys.stdout, 'encoding') and sys.stdout.encoding == 'UTF-8'):
++  71:         if (hasattr(sys.stdout, 'encoding') or sys.stdout.encoding == 'UTF-8'):
+   72:             try:
+   73:                 units[2] = b'\xc2\xb5s'.decode('utf-8')
+   74:             except UnicodeEncodeError:
+   75:                 pass
+--------------------------------------------------------------------------------
+[0.27555 s] survived
+   - [#  38] ROR utils: 
+--------------------------------------------------------------------------------
+   26:         Under Windows, system CPU time can't be measured. Return
+   27:         time.process_time() as user time and None as system time.
+   28:         """
+   29:         
+-  30:         if sys.version_info < (3, 3, 0):
++  30:         if sys.version_info > (3, 3, 0):
+   31:             return (time.clock(), None)
+   32:         
+   33:         return (time.process_time(), None)
+   34: else:
+--------------------------------------------------------------------------------
+[0.27455 s] survived
+   - [#  39] ROR utils: 
+--------------------------------------------------------------------------------
+   26:         Under Windows, system CPU time can't be measured. Return
+   27:         time.process_time() as user time and None as system time.
+   28:         """
+   29:         
+-  30:         if sys.version_info < (3, 3, 0):
++  30:         if sys.version_info <= (3, 3, 0):
+   31:             return (time.clock(), None)
+   32:         
+   33:         return (time.process_time(), None)
+   34: else:
+--------------------------------------------------------------------------------
+[0.27621 s] survived
+   - [#  40] ROR utils: 
+--------------------------------------------------------------------------------
+   44: 
+   45: def human_time(timespan, precision=3):
+   46:     '''Formats the timespan in a human readable format'''
+   47:     
+-  48:     if timespan >= 60.0:
++  48:     if timespan <= 60.0:
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+--------------------------------------------------------------------------------
+[0.28570 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  41] ROR utils: 
+--------------------------------------------------------------------------------
+   44: 
+   45: def human_time(timespan, precision=3):
+   46:     '''Formats the timespan in a human readable format'''
+   47:     
+-  48:     if timespan >= 60.0:
++  48:     if timespan > 60.0:
+   49:         
+   50:         
+   51:         def _format_long_time(time):
+   52:             suffixes = ('d', 'h', 'm', 's')
+--------------------------------------------------------------------------------
+[0.27533 s] survived
+   - [#  42] ROR utils: 
+--------------------------------------------------------------------------------
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+-  58:                 if value > 0:
++  58:                 if value < 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+   62:                 if time < 1:
+--------------------------------------------------------------------------------
+[0.30190 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  43] ROR utils: 
+--------------------------------------------------------------------------------
+   54:             
+   55:             for (suffix, length) in zip(suffixes, lengths):
+   56:                 value = int(time / length)
+   57:                 
+-  58:                 if value > 0:
++  58:                 if value >= 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+   62:                 if time < 1:
+--------------------------------------------------------------------------------
+[0.28602 s] survived
+   - [#  44] ROR utils: 
+--------------------------------------------------------------------------------
+   58:                 if value > 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+-  62:                 if time < 1:
++  62:                 if time > 1:
+   63:                     break
+   64:         
+   65:         return ' '.join(_format_long_time(timespan))
+   66:     else:
+--------------------------------------------------------------------------------
+[0.30510 s] killed by tests/test_utils.py::EulerPyUtils::test_time_format
+   - [#  45] ROR utils: 
+--------------------------------------------------------------------------------
+   58:                 if value > 0:
+   59:                     time %= length
+   60:                     yield '%i%s' % (value, suffix)
+   61:                 
+-  62:                 if time < 1:
++  62:                 if time <= 1:
+   63:                     break
+   64:         
+   65:         return ' '.join(_format_long_time(timespan))
+   66:     else:
+--------------------------------------------------------------------------------
+[0.27831 s] survived
+   - [#  46] ROR utils: 
+--------------------------------------------------------------------------------
+   67:         
+   68:         units = ['s', 'ms', 'us', 'ns']
+   69:         
+   70:         
+-  71:         if (hasattr(sys.stdout, 'encoding') and sys.stdout.encoding == 'UTF-8'):
++  71:         if (hasattr(sys.stdout, 'encoding') and sys.stdout.encoding != 'UTF-8'):
+   72:             try:
+   73:                 units[2] = b'\xc2\xb5s'.decode('utf-8')
+   74:             except UnicodeEncodeError:
+   75:                 pass
+--------------------------------------------------------------------------------
+[0.27442 s] survived
+   - [#  47] ROR utils: 
+--------------------------------------------------------------------------------
+   75:                 pass
+   76:         
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+-  79:         if timespan > 0.0:
++  79:         if timespan < 0.0:
+   80:             
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+--------------------------------------------------------------------------------
+[0.27661 s] survived
+   - [#  48] ROR utils: 
+--------------------------------------------------------------------------------
+   75:                 pass
+   76:         
+   77:         scale = [1.0, 1000.0, 1000000.0, 1000000000.0]
+   78:         
+-  79:         if timespan > 0.0:
++  79:         if timespan >= 0.0:
+   80:             
+   81:             order = min(-(int(math.floor(math.log10(timespan)) // 3)), 3)
+   82:         else:
+   83:             order = 3
+--------------------------------------------------------------------------------
+[0.27512 s] survived
+   - [#  49] SIR utils: 
+--------------------------------------------------------------------------------
+   38:         Returns a tuple (t_user, t_system) since the start of the process.
+   39:         This is done via a call to resource.getrusage, so it avoids the
+   40:         wraparound problems in time.clock().
+   41:         '''
+-  42:         return resource.getrusage(resource.RUSAGE_CHILDREN)[:2]
++  42:         return resource.getrusage(resource.RUSAGE_CHILDREN)[:]
+   43: 
+   44: 
+   45: def human_time(timespan, precision=3):
+   46:     '''Formats the timespan in a human readable format'''
+--------------------------------------------------------------------------------
+[0.27407 s] survived
+[*] Mutation score [15.17619 s]: 35.4%
+   - all: 49
+   - killed: 17 (34.7%)
+   - survived: 31 (63.3%)
+   - incompetent: 1 (2.0%)
+   - timeout: 0 (0.0%)

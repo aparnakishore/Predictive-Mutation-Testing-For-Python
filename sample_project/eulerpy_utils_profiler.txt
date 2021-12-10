@@ -1,0 +1,131 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.8.3, pytest-6.2.2, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy
+plugins: line-profiler-0.1.0, hydra-core-1.1.1
+collected 5 items
+
+eulerpy_utils_profiler.py .....                                          [100%]
+
+============================== 5 passed in 3.08s ===============================
+Wrote profile results to pytest.lprof
+Timer unit: 1e-06 s
+
+Total time: 0 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_utils_profiler.py
+Function: problem_glob at line 15
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    15                                           @profile
+    16                                           def problem_glob(extension='.py'):
+    17                                               """Returns ProblemFile objects for all valid problem files"""
+    18                                               filenames = glob.glob('*[0-9][0-9][0-9]*{}'.format(extension))
+    19                                               return [ProblemFile(file) for file in filenames]
+
+Total time: 0 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_utils_profiler.py
+Function: clock at line 40
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    40                                               @profile
+    41                                               def clock():
+    42                                                   """
+    43                                                   Returns a tuple (t_user, t_system) since the start of the process.
+    44                                                   This is done via a call to resource.getrusage, so it avoids the
+    45                                                   wraparound problems in time.clock().
+    46                                                   """
+    47                                                   return resource.getrusage(resource.RUSAGE_CHILDREN)[:2]
+
+Total time: 0.000561 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_utils_profiler.py
+Function: human_time at line 49
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    49                                           @profile
+    50                                           def human_time(timespan, precision=3):
+    51                                               """Formats the timespan in a human readable format"""
+    52                                           
+    53         2         27.0     13.5      4.8      if timespan >= 60.0:
+    54                                                   # Format time greater than one minute in a human-readable format
+    55                                                   # Idea from http://snipplr.com/view/5713/
+    56         2          7.0      3.5      1.2          @profile
+    57         2        205.0    102.5     36.5          def _format_long_time(time):
+    58                                                       suffixes = ('d', 'h', 'm', 's')
+    59                                                       lengths = (24*60*60, 60*60, 60, 1)
+    60                                           
+    61                                                       for suffix, length in zip(suffixes, lengths):
+    62                                                           value = int(time / length)
+    63                                           
+    64                                                           if value > 0:
+    65                                                               time %= length
+    66                                                               yield '%i%s' % (value, suffix)
+    67                                           
+    68                                                           if time < 1:
+    69                                                               break
+    70                                           
+    71         2        322.0    161.0     57.4          return ' '.join(_format_long_time(timespan))
+    72                                           
+    73                                               else:
+    74                                                   units = ['s', 'ms', 'us', 'ns']
+    75                                           
+    76                                                   # Attempt to replace 'us' with 'µs' if UTF-8 encoding has been set
+    77                                                   if hasattr(sys.stdout, 'encoding') and sys.stdout.encoding == 'UTF-8':
+    78                                                       try:
+    79                                                           units[2] = b'\xc2\xb5s'.decode('utf-8')
+    80                                                       except UnicodeEncodeError:
+    81                                                           pass
+    82                                           
+    83                                                   scale = [1.0, 1e3, 1e6, 1e9]
+    84                                           
+    85                                                   if timespan > 0.0:
+    86                                                       # Determine scale of timespan (s = 0, ms = 1, µs = 2, ns = 3)
+    87                                                       order = min(-int(math.floor(math.log10(timespan)) // 3), 3)
+    88                                                   else:
+    89                                                       order = 3
+    90                                           
+    91                                                   return '%.*g %s' % (precision, timespan * scale[order], units[order])
+
+Total time: 0.00013 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_utils_profiler.py
+Function: _format_long_time at line 56
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    56                                                   @profile
+    57                                                   def _format_long_time(time):
+    58         2          4.0      2.0      3.1              suffixes = ('d', 'h', 'm', 's')
+    59         2          4.0      2.0      3.1              lengths = (24*60*60, 60*60, 60, 1)
+    60                                           
+    61         8         18.0      2.2     13.8              for suffix, length in zip(suffixes, lengths):
+    62         8         24.0      3.0     18.5                  value = int(time / length)
+    63                                           
+    64         8         13.0      1.6     10.0                  if value > 0:
+    65         8         18.0      2.2     13.8                      time %= length
+    66         8         28.0      3.5     21.5                      yield '%i%s' % (value, suffix)
+    67                                           
+    68         8         15.0      1.9     11.5                  if time < 1:
+    69         2          6.0      3.0      4.6                      break
+
+Total time: 0 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_utils_profiler.py
+Function: format_time at line 93
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    93                                           @profile
+    94                                           def format_time(start, end):
+    95                                               """Returns string with relevant time information formatted properly"""
+    96                                               try:
+    97                                                   cpu_usr = end[0] - start[0]
+    98                                                   cpu_sys = end[1] - start[1]
+    99                                           
+   100                                               except TypeError:
+   101                                                   # `clock()[1] == None` so subtraction results in a TypeError
+   102                                                   return 'Time elapsed: {}'.format(human_time(cpu_usr))
+   103                                           
+   104                                               else:
+   105                                                   times = (human_time(x) for x in (cpu_usr, cpu_sys, cpu_usr + cpu_sys))
+   106                                                   return 'Time elapsed: user: {}, sys: {}, total: {}'.format(*times)
+

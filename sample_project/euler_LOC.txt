@@ -1,0 +1,12 @@
+euler.py
+    LOC: 275
+    LLOC: 157
+    SLOC: 151
+    Comments: 51
+    Single comments: 56
+    Multi: 4
+    Blank: 64
+    - Comment Stats
+        (C % L): 19%
+        (C % S): 34%
+        (C + M % L): 20%

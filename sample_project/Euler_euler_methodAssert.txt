@@ -1,0 +1,104 @@
+../test/test_euler.py
+,EulerRun(*commands, **kwargs),_, 0
+EulerPyTest(unittest.TestCase):
+,,_, 0
+EulerPyTest(unittest.TestCase):
+,setUp(self),_, 0
+EulerPyTest(unittest.TestCase):
+,tearDown(self),_, 0
+EulerPyNoOption(EulerPyTest):
+,,_, 0
+EulerPyNoOption(EulerPyTest):
+,test_empty_directory_install_neutral(self),_, 2
+EulerPyNoOption(EulerPyTest):
+,test_empty_directory_negative(self),_, 2
+EulerPyNoOption(EulerPyTest):
+,test_no_arguments_first_correct(self),_, 2
+EulerPyNoOption(EulerPyTest):
+,test_no_arguments_first_incorrect(self),_, 2
+EulerPyNoOption(EulerPyTest):
+,test_no_arguments_keep_prefix(self),_, 3
+EulerPyNoOption(EulerPyTest):
+,test_ambiguous_option_generate(self),_, 2
+EulerPyNoOption(EulerPyTest):
+,test_ambiguous_option_verify(self),_, 2
+EulerPyCheat(EulerPyTest):
+,,_, 0
+EulerPyCheat(EulerPyTest):
+,test_cheat_neutral(self),_, 1
+EulerPyCheat(EulerPyTest):
+,test_cheat_long_flag(self),_, 1
+EulerPyCheat(EulerPyTest):
+,test_cheat_positive(self),_, 2
+EulerPyCheat(EulerPyTest):
+,test_chest_specific(self),_, 1
+EulerPyCheat(EulerPyTest):
+,test_cheat_not_in_solutions(self),_, 1
+EulerPyGenerate(EulerPyTest):
+,,_, 0
+EulerPyGenerate(EulerPyTest):
+,test_generate_neutral(self),_, 2
+EulerPyGenerate(EulerPyTest):
+,test_generate_negative(self),_, 2
+EulerPyGenerate(EulerPyTest):
+,test_generate_specific(self),_, 2
+EulerPyGenerate(EulerPyTest):
+,test_generate_overwrite_positive(self),_, 2
+EulerPyGenerate(EulerPyTest):
+,test_generate_overwrite_neutral(self),_, 2
+EulerPyGenerate(EulerPyTest):
+,test_generate_overwrite_skipped(self),_, 3
+EulerPyGenerate(EulerPyTest):
+,test_generate_copy_resources(self),_, 4
+EulerPyPreview(EulerPyTest):
+,,_, 0
+EulerPyPreview(EulerPyTest):
+,test_preview(self),_, 2
+EulerPyPreview(EulerPyTest):
+,test_preview_specific(self),_, 2
+EulerPyPreview(EulerPyTest):
+,test_preview_next_behaviour(self),_, 2
+EulerPyPreview(EulerPyTest):
+,test_preview_nonexistent(self),_, 1
+EulerPySkip(EulerPyTest):
+,,_, 0
+EulerPySkip(EulerPyTest):
+,test_skip_neutral(self),_, 2
+EulerPySkip(EulerPyTest):
+,test_skip_positive(self),_, 3
+EulerPySkip(EulerPyTest):
+,test_skip_prefixed_file(self),_, 4
+EulerPyVerify(EulerPyTest):
+,,_, 0
+EulerPyVerify(EulerPyTest):
+,test_verify(self),_, 2
+EulerPyVerify(EulerPyTest):
+,test_verify_specific(self),_, 2
+EulerPyVerify(EulerPyTest):
+,test_verify_glob(self),_, 2
+EulerPyVerify(EulerPyTest):
+,test_verify_sorted_glob(self),_, 3
+EulerPyVerify(EulerPyTest):
+,test_verify_correct(self),_, 1
+EulerPyVerify(EulerPyTest):
+,test_verify_non_existent_problem_file(self),_, 1
+EulerPyVerify(EulerPyTest):
+,test_verify_file_with_multiline_output(self),_, 1
+EulerPyVerify(EulerPyTest):
+,test_verify_error_file(self),_, 2
+EulerPyVerify(EulerPyTest):
+,test_verify_prefixed_file(self),_, 1
+EulerPyVerify(EulerPyTest):
+,test_verify_prefixed_unskip(self),_, 3
+EulerPyVerifyAll(EulerPyTest):
+,,_, 0
+EulerPyVerifyAll(EulerPyTest):
+,test_verify_all(self),_, 5
+EulerPyVerifyAll(EulerPyTest):
+,test_verify_all_no_files(self),_, 1
+EulerPyMisc(EulerPyTest):
+,,_, 0
+EulerPyMisc(EulerPyTest):
+,test_help_option(self),_, 7
+EulerPyMisc(EulerPyTest):
+,test_version_option(self),_, 1

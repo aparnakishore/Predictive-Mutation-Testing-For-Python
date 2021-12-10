@@ -1,0 +1,317 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.8.3, pytest-6.2.2, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy
+plugins: line-profiler-0.1.0, hydra-core-1.1.1
+collected 40 items
+
+eulerpy_euler_profiler.py ........................................       [100%]
+
+============================== 40 passed in 4.71s ==============================
+Wrote profile results to pytest.lprof
+Timer unit: 1e-06 s
+
+Total time: 0.001109 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: cheat at line 17
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    17                                           @profile
+    18                                           def cheat(num):
+    19                                               """View the answer to a problem."""
+    20                                               # Define solution before echoing in case solution does not exist
+    21        10        463.0     46.3     41.7      solution = click.style(Problem(num).solution, bold=True)
+    22         8        579.0     72.4     52.2      click.confirm("View answer to problem %i?" % num, abort=True)
+    23         4         67.0     16.8      6.0      click.echo("The answer to problem {} is {}.".format(num, solution))
+
+Total time: 0.032477 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: generate at line 27
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    27                                           @profile
+    28                                           def generate(num, prompt_default=True):
+    29                                               """Generates Python file for a problem."""
+    30        30         99.0      3.3      0.3      p = Problem(num)
+    31                                           
+    32        30       6034.0    201.1     18.6      problem_text = p.text
+    33                                           
+    34        30         64.0      2.1      0.2      msg = "Generate file for problem %i?" % num
+    35        30       1671.0     55.7      5.1      click.confirm(msg, default=prompt_default, abort=True)
+    36                                           
+    37                                               # Allow skipped problem files to be recreated
+    38        24       7570.0    315.4     23.3      if p.glob:
+    39         6        647.0    107.8      2.0          filename = str(p.file)
+    40         6         11.0      1.8      0.0          msg = '"{}" already exists. Overwrite?'.format(filename)
+    41         6        207.0     34.5      0.6          click.confirm(click.style(msg, fg='red'), abort=True)
+    42                                               else:
+    43                                                   # Try to keep prefix consistent with existing files
+    44        18       3752.0    208.4     11.6          previous_file = Problem(num - 1).file
+    45        18        138.0      7.7      0.4          prefix = previous_file.prefix if previous_file else ''
+    46        18         83.0      4.6      0.3          filename = p.filename(prefix=prefix)
+    47                                           
+    48        22         31.0      1.4      0.1      header = 'Project Euler Problem %i' % num
+    49        22         34.0      1.5      0.1      divider = '=' * len(header)
+    50        22         38.0      1.7      0.1      text = '\n'.join([header, divider, '', problem_text])
+    51        22         56.0      2.5      0.2      content = '\n'.join(['"""', text, '"""'])
+    52                                           
+    53        22       2636.0    119.8      8.1      with open(filename, 'w') as f:
+    54        22       2394.0    108.8      7.4          f.write(content + '\n\n\n')
+    55                                           
+    56        22        927.0     42.1      2.9      click.secho('Successfully created "{}".'.format(filename), fg='green')
+    57                                           
+    58                                               # Copy over problem resources if required
+    59        22       4600.0    209.1     14.2      if p.resources:
+    60         2       1485.0    742.5      4.6          p.copy_resources()
+
+Total time: 0.015713 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: preview at line 64
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    64                                           @profile
+    65                                           def preview(num):
+    66                                               """Prints the text of a problem."""
+    67                                               # Define problem_text before echoing in case problem does not exist
+    68         8      15311.0   1913.9     97.4      problem_text = Problem(num).text
+    69         6        326.0     54.3      2.1      click.secho("Project Euler Problem %i" % num, bold=True)
+    70         6         76.0     12.7      0.5      click.echo(problem_text)
+
+Total time: 0.004542 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: skip at line 74
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    74                                           @profile
+    75                                           def skip(num):
+    76                                               """Generates Python file for the next problem."""
+    77         6        254.0     42.3      5.6      click.echo("Current problem is problem %i." % num)
+    78         6       3092.0    515.3     68.1      generate(num + 1, prompt_default=False)
+    79         4       1196.0    299.0     26.3      Problem(num).file.change_suffix('-skipped')
+
+Total time: 1.28147 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: verify at line 83
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    83                                           @profile
+    84                                           def verify(num, filename=None, exit=True):
+    85                                               """Verifies the solution to a problem."""
+    86        36        109.0      3.0      0.0      p = Problem(num)
+    87                                           
+    88        36        169.0      4.7      0.0      filename = filename or p.filename()
+    89                                           
+    90        36        918.0     25.5      0.1      if not os.path.isfile(filename):
+    91                                                   # Attempt to verify the first problem file matched by glob
+    92        10       1249.0    124.9      0.1          if p.glob:
+    93         8       1121.0    140.1      0.1              filename = str(p.file)
+    94                                                   else:
+    95         2        133.0     66.5      0.0              click.secho('No file found for problem %i.' % p.num, fg='red')
+    96         2          5.0      2.5      0.0              sys.exit(1)
+    97                                           
+    98        34       1153.0     33.9      0.1      solution = p.solution
+    99        34       1598.0     47.0      0.1      click.echo('Checking "{}" against solution: '.format(filename), nl=False)
+   100                                           
+   101        34         61.0      1.8      0.0      cmd = (sys.executable or 'python', filename)
+   102        34        226.0      6.6      0.0      start = clock()
+   103        34      97934.0   2880.4      7.6      proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+   104        34    1147138.0  33739.4     89.5      stdout = proc.communicate()[0]
+   105        34       2111.0     62.1      0.2      end = clock()
+   106        34       5719.0    168.2      0.4      time_info = format_time(start, end)
+   107                                           
+   108                                               # Return value of anything other than 0 indicates an error
+   109        34        569.0     16.7      0.0      if proc.poll() != 0:
+   110         4       1207.0    301.8      0.1          click.secho('Error calling "{}".'.format(filename), fg='red')
+   111         4        169.0     42.2      0.0          click.secho(time_info, fg='cyan')
+   112                                           
+   113                                                   # Return None if option is not --verify-all, otherwise exit
+   114         4          9.0      2.2      0.0          return sys.exit(1) if exit else None
+   115                                           
+   116                                               # Decode output if returned as bytes (Python 3)
+   117        30         97.0      3.2      0.0      if isinstance(stdout, bytes):
+   118        30        131.0      4.4      0.0          output = stdout.decode('ascii')
+   119                                           
+   120                                               # Split output lines into array; make empty output more readable
+   121        30        190.0      6.3      0.0      output_lines = output.splitlines() if output else ['[no output]']
+   122                                           
+   123                                               # If output is multi-lined, print the first line of the output on a
+   124                                               # separate line from the "checking against solution" message, and
+   125                                               # skip the solution check (multi-line solution won't be correct)
+   126        30         52.0      1.7      0.0      if len(output_lines) > 1:
+   127         2          2.0      1.0      0.0          is_correct = False
+   128         2        155.0     77.5      0.0          click.echo()  # force output to start on next line
+   129         2        361.0    180.5      0.0          click.secho('\n'.join(output_lines), bold=True, fg='red')
+   130                                               else:
+   131        28         33.0      1.2      0.0          is_correct = output_lines[0] == solution
+   132        28        536.0     19.1      0.0          fg_colour = 'green' if is_correct else 'red'
+   133        28       8545.0    305.2      0.7          click.secho(output_lines[0], bold=True, fg=fg_colour)
+   134                                           
+   135        30       1228.0     40.9      0.1      click.secho(time_info, fg='cyan')
+   136                                           
+   137                                               # Remove any suffix from the filename if its solution is correct
+   138        30         32.0      1.1      0.0      if is_correct:
+   139        16       8440.0    527.5      0.7          p.file.change_suffix('')
+   140                                           
+   141                                               # Exit here if answer was incorrect, otherwise return is_correct value
+   142        30         75.0      2.5      0.0      return sys.exit(1) if exit and not is_correct else is_correct
+
+Total time: 0.276327 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: verify_all at line 146
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   146                                           @profile
+   147                                           def verify_all(num):
+   148                                               """
+   149                                               Verifies all problem files in the current directory and
+   150                                               prints an overview of the status of each problem.
+   151                                               """
+   152                                           
+   153                                               # Define various problem statuses
+   154         4          4.0      1.0      0.0      keys = ('correct', 'incorrect', 'error', 'skipped', 'missing')
+   155         4          3.0      0.8      0.0      symbols = ('C', 'I', 'E', 'S', '.')
+   156         4          4.0      1.0      0.0      colours = ('green', 'red', 'yellow', 'cyan', 'white')
+   157                                           
+   158         8        156.0     19.5      0.1      status = OrderedDict(
+   159                                                   (key, click.style(symbol, fg=colour, bold=True))
+   160         4         11.0      2.8      0.0          for key, symbol, colour in zip(keys, symbols, colours)
+   161                                               )
+   162                                           
+   163         4          5.0      1.2      0.0      overview = {}
+   164                                           
+   165                                               # Search through problem files using glob module
+   166         4        245.0     61.2      0.1      files = problem_glob()
+   167                                           
+   168                                               # No Project Euler files in the current directory
+   169         4          5.0      1.2      0.0      if not files:
+   170         2         89.0     44.5      0.0          click.echo("No Project Euler files found in the current directory.")
+   171         2          4.0      2.0      0.0          sys.exit(1)
+   172                                           
+   173        10         18.0      1.8      0.0      for file in files:
+   174                                                   # Catch KeyboardInterrupt during verification to allow the user to
+   175                                                   # skip the verification of a specific problem if it takes too long
+   176         8          8.0      1.0      0.0          try:
+   177         8     274080.0  34260.0     99.2              is_correct = verify(file.num, filename=str(file), exit=False)
+   178                                                   except KeyboardInterrupt:
+   179                                                       overview[file.num] = status['skipped']
+   180                                                   else:
+   181         8         11.0      1.4      0.0              if is_correct is None:  # error was returned by problem file
+   182         2         81.0     40.5      0.0                  overview[file.num] = status['error']
+   183         6          5.0      0.8      0.0              elif is_correct:
+   184         4         43.0     10.8      0.0                  overview[file.num] = status['correct']
+   185         2          2.0      1.0      0.0              elif not is_correct:
+   186         2         42.0     21.0      0.0                  overview[file.num] = status['incorrect']
+   187                                           
+   188                                                           # Attempt to add "skipped" suffix to the filename if the
+   189                                                           # problem file is not the current problem. This is useful
+   190                                                           # when the --verify-all is used in a directory containing
+   191                                                           # files generated pre-v1.1 (before files with suffixes)
+   192         2          8.0      4.0      0.0                  if file.num != num:
+   193         2        466.0    233.0      0.2                      file.change_suffix('-skipped')
+   194                                           
+   195                                                   # Separate each verification with a newline
+   196         8        100.0     12.5      0.0          click.echo()
+   197                                           
+   198                                               # Print overview of the status of each problem
+   199         2         38.0     19.0      0.0      legend = ', '.join('{} = {}'.format(v, k) for k, v in status.items())
+   200                                           
+   201         2         35.0     17.5      0.0      click.echo('-' * 63)
+   202         2        130.0     65.0      0.0      click.echo(legend + '\n')
+   203                                           
+   204                                               # Rows needed for overview is based on the current problem number
+   205         2          2.0      1.0      0.0      num_of_rows = (num + 19) // 20
+   206                                           
+   207         4          7.0      1.8      0.0      for row in range(1, num_of_rows + 1):
+   208         2          4.0      2.0      0.0          low, high = (row * 20) - 19, (row * 20)
+   209         2         27.0     13.5      0.0          click.echo("Problems {:03d}-{:03d}: ".format(low, high), nl=False)
+   210                                           
+   211        42         42.0      1.0      0.0          for problem in range(low, high + 1):
+   212                                                       # Add missing status to problems with no corresponding file
+   213        40         49.0      1.2      0.0              status = overview[problem] if problem in overview else '.'
+   214                                           
+   215                                                       # Separate problem indicators into groups of 5
+   216        40         74.0      1.9      0.0              spacer = '   ' if (problem % 5 == 0) else ' '
+   217                                           
+   218                                                       # Start a new line at the end of each row
+   219        40        518.0     12.9      0.2              click.secho(status + spacer, nl=(problem % 20 == 0))
+   220                                           
+   221         2         11.0      5.5      0.0      click.echo()
+
+Total time: 0.000269 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: euler_options at line 223
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   223                                           @profile
+   224                                           def euler_options(fn):
+   225                                               """Decorator to link CLI options with their appropriate functions"""
+   226         1          6.0      6.0      2.2      euler_functions = cheat, generate, preview, skip, verify, verify_all
+   227                                           
+   228                                               # Reverse functions to print help page options in alphabetical order
+   229         7          7.0      1.0      2.6      for option in reversed(euler_functions):
+   230         6          4.0      0.7      1.5          name, docstring = option.__name__, option.__doc__
+   231         6          4.0      0.7      1.5          kwargs = {'flag_value': option, 'help': docstring}
+   232                                           
+   233                                                   # Apply flag(s) depending on whether or not name is a single word
+   234         6          6.0      1.0      2.2          flag = '--%s' % name.replace('_', '-')
+   235         6          7.0      1.2      2.6          flags = [flag] if '_' in name else [flag, '-%s' % name[0]]
+   236                                           
+   237         6        234.0     39.0     87.0          fn = click.option('option', *flags, **kwargs)(fn)
+   238                                           
+   239         1          1.0      1.0      0.4      return fn
+
+Total time: 1.35784 s
+File: /Users/aparnak/Classes/Program_Analysis/Project/Projects/EulerPy/EulerPy/eulerpy_euler_profiler.py
+Function: main at line 242
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   242                                           @click.command(name='euler', options_metavar='[OPTION]')
+   243                                           @click.argument('problem', default=0, type=click.IntRange(0, None))
+   244                                           @euler_options
+   245                                           @click.version_option(version=__version__, message="EulerPy %(version)s")
+   246                                           @profile
+   247                                           def main(option, problem):
+   248                                               """Python-based Project Euler command line tool."""
+   249                                               # No problem given (or given option ignores the problem argument)
+   250        76        419.0      5.5      0.0      if problem == 0 or option in {skip, verify_all}:
+   251                                                   # Determine the highest problem number in the current directory
+   252        38       5760.0    151.6      0.4          files = problem_glob()
+   253        38        311.0      8.2      0.0          problem = max(file.num for file in files) if files else 0
+   254                                           
+   255                                                   # No Project Euler files in current directory (no glob results)
+   256        38         26.0      0.7      0.0          if problem == 0:
+   257                                                       # Generate the first problem file if option is appropriate
+   258        18         26.0      1.4      0.0              if option not in {cheat, preview, verify_all}:
+   259         8          8.0      1.0      0.0                  msg = "No Project Euler files found in the current directory."
+   260         8        374.0     46.8      0.0                  click.echo(msg)
+   261         8          7.0      0.9      0.0                  option = generate
+   262                                           
+   263                                                       # Set problem number to 1
+   264        18         10.0      0.6      0.0              problem = 1
+   265                                           
+   266                                                   # --preview and no problem; preview the next problem
+   267        20         15.0      0.8      0.0          elif option is preview:
+   268         2          2.0      1.0      0.0              problem += 1
+   269                                           
+   270                                                   # No option and no problem; generate next file if answer is
+   271                                                   # correct (verify() will exit if the solution is incorrect)
+   272        38         27.0      0.7      0.0          if option is None:
+   273         6     258705.0  43117.5     19.1              verify(problem)
+   274         4          8.0      2.0      0.0              problem += 1
+   275         4         12.0      3.0      0.0              option = generate
+   276                                           
+   277                                               # Problem given but no option; decide between generate and verify
+   278        38         48.0      1.3      0.0      elif option is None:
+   279         4       2987.0    746.8      0.2          option = verify if Problem(problem).glob else generate
+   280                                           
+   281                                               # Execute function based on option
+   282        74    1088972.0  14715.8     80.2      option(problem)
+   283        42        121.0      2.9      0.0      sys.exit(0)
+

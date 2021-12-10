@@ -1,0 +1,83 @@
+/Users/aparnak/Classes/Program_Analysis/main/options.py
+Namespace(Bunch):
+,33--171
+total classes = 3
+options,39
+/Users/aparnak/Classes/Program_Analysis/main/git.py
+,0--93
+total classes = 0
+git,12
+/Users/aparnak/Classes/Program_Analysis/main/board.py
+Board:
+,11--79
+total classes = 1
+board,4
+/Users/aparnak/Classes/Program_Analysis/main/tasks.py
+Task(object):
+,291--895
+total classes = 4
+tasks,174
+/Users/aparnak/Classes/Program_Analysis/main/manifest.py
+KeywordLocals(collections.abc.Mapping):
+,322--378
+total classes = 2
+manifest,65
+/Users/aparnak/Classes/Program_Analysis/main/_version.py
+InvalidVersionSpecifier(Exception):
+,32--112
+total classes = 2
+_version,3
+/Users/aparnak/Classes/Program_Analysis/main/svn.py
+,0--65
+total classes = 0
+svn,18
+/Users/aparnak/Classes/Program_Analysis/main/shell.py
+,0--60
+total classes = 0
+shell,27
+/Users/aparnak/Classes/Program_Analysis/main/stock.py
+Stock:
+,5--65
+total classes = 1
+stock,5
+/Users/aparnak/Classes/Program_Analysis/main/doctools.py
+Includer(object):
+,234--422
+total classes = 2
+doctools,20
+/Users/aparnak/Classes/Program_Analysis/main/rule.py
+PriceRule:
+,1--16
+total classes = 1
+rule,6
+/Users/aparnak/Classes/Program_Analysis/main/utils.py
+,0--100
+total classes = 0
+utils,35
+/Users/aparnak/Classes/Program_Analysis/main/calculator.py
+,0--3
+total classes = 0
+calculator,1
+/Users/aparnak/Classes/Program_Analysis/main/stack.py
+Stack:
+,1--17
+total classes = 1
+stack,8
+/Users/aparnak/Classes/Program_Analysis/main/hg.py
+,0--121
+total classes = 0
+hg,22
+/Users/aparnak/Classes/Program_Analysis/main/setuputils.py
+DistutilsTaskFinder(object):
+,189--276
+total classes = 2
+setuputils,26
+/Users/aparnak/Classes/Program_Analysis/main/path.py
+path(_orig_path):
+,41--84
+total classes = 1
+path,1
+/Users/aparnak/Classes/Program_Analysis/main/euler.py
+,0--275
+total classes = 0
+euler,86

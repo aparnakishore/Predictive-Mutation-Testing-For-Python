@@ -1,0 +1,12 @@
+utils.py
+    LOC: 100
+    LLOC: 60
+    SLOC: 54
+    Comments: 8
+    Single comments: 11
+    Multi: 9
+    Blank: 26
+    - Comment Stats
+        (C % L): 8%
+        (C % S): 15%
+        (C + M % L): 17%

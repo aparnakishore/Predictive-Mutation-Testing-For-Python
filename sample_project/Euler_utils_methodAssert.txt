@@ -1,0 +1,15 @@
+../test/test_utils.py
+EulerPyUtils(unittest.TestCase):
+,,_, 0
+EulerPyUtils(unittest.TestCase):
+,test_problem_format(self),_, 2
+EulerPyUtils(unittest.TestCase):
+,test_expected_problem(self),_, 1
+EulerPyUtils(unittest.TestCase):
+,test_filename_format(self),_, 3
+EulerPyUtils(unittest.TestCase):
+,test_time_format(self),_, 1
+EulerPyUtils(unittest.TestCase):
+,test_problem_resources(self),_, 0
+EulerPyUtils(unittest.TestCase):
+,_resource_check(filename, seen_files),_, 2
